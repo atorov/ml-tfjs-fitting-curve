@@ -1,0 +1,16 @@
+{
+  "name": "ml-tfjs-fitting-curve",
+  "version": "1.0.0",
+  "author": "atorov",
+  "repository": "https://github.com/atorov/ml-tfjs-fitting-curve.git",
+  "license": "MIT",
+  "scripts": {
+    "start": "reload -b -v"
+  },
+  "devDependencies": {
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "reload": "^2.3.1"
+  }
+}
