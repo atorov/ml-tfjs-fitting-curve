@@ -13,7 +13,9 @@ To run the code locally, you need the following dependencies installed:
 - Node.js version 8.9 or higher
 - NPM CLI
 
-- $ git clone https://github.com/atorov/ml-tfjs-fitting-curve
-- $ cd ml-tfjs-fitting-curve
-- $ npm i
-- $ npm start
+```
+$ git clone https://github.com/atorov/ml-tfjs-fitting-curve
+$ cd ml-tfjs-fitting-curve
+$ npm i
+$ npm start
+```
