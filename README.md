@@ -1,6 +1,8 @@
-# ml-tfjs-fitting-curve
+# Fitting a Curve to Synthetic Data
 
-## Fitting a Curve to Synthetic Data
+**ml-tfjs-fitting-curve**
+
+![demo](https://github.com/atorov/ml-tfjs-fitting-curve/blob/master/assets/demo.gif)
 
 Using `TensorFlow.js` and `p5js` to fit a curve to a synthetic dataset.
 
@@ -11,7 +13,7 @@ To run the code locally, you need the following dependencies installed:
 - Node.js version 8.9 or higher
 - NPM CLI
 
-$ git clone https://github.com/atorov/ml-tfjs-fitting-curve
-$ cd ml-tfjs-fitting-curve
-$ npm i
-$ npm start
+- $ git clone https://github.com/atorov/ml-tfjs-fitting-curve
+- $ cd ml-tfjs-fitting-curve
+- $ npm i
+- $ npm start
