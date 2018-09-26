@@ -34,7 +34,7 @@ const p5Main = new p5((s) => {
 
     // Constructs a predict function that takes `x` as input and returns `y`:
     s.predict = x => (
-        // y = a * x^3 + b * x^2 + c * x + d
+        // y = a * x^5 + b * x^4 + c * x^3 + d * x^2 + e * x + f
         tf.tidy(() => {
             const A = s.a.mul(x.pow(tf.scalar(5))) // a * x^5
             const B = s.b.mul(x.pow(tf.scalar(4))) // + b * x^4
