@@ -1,7 +1,7 @@
 const p5Main = new p5((s) => {
-    // Create some variables to hold our current best estimate of these values
+    // Create some variables to hold the current best estimate of these values
     // at each step of model training.
-    // Assign each of these variables a number:
+    // Assign each of these variables a random number:
     const a = tf.scalar(s.random(-1, 1))
     s.a = tf.variable(a, true)
     a.dispose()
@@ -57,6 +57,7 @@ const p5Main = new p5((s) => {
     // s.optimizer = tf.train.sgd(0.1)
     s.optimizer = tf.train.adam()
 
+    // p5.js setup -------------------------------------------------------------
     s.setup = () => {
         s.createCanvas(500, 500)
 
@@ -69,7 +70,9 @@ const p5Main = new p5((s) => {
         s.xs = tf.tensor1d(s.xs_data)
         s.ys = tf.tensor1d(s.ys_data)
     }
+    // -------------------------------------------------------------------------
 
+    // p5.js draw() ------------------------------------------------------------
     s.draw = async () => {
         const opt = s.optimizer.minimize(
             () => {
@@ -88,15 +91,18 @@ const p5Main = new p5((s) => {
         const ys_pred = s.predict(s.xs)
         const ys_pred_data = await ys_pred.data()
         ys_pred.dispose()
-        // console.log(ys_pred_data)
 
         s.background(0)
         s.drawGrid()
         s.drawCloud(s.xs_data, s.ys_data)
         s.drawPredCurve(s.xs_data, ys_pred_data)
 
-        s.printTensorsCount()
-        s.printLossValue(opt_data)
+        if (!(s.frameCount % 100) || s.frameCount === 1) {
+            console.log('::: --- --- ---')
+            console.log('::: frame:', s.frameCount)
+            console.log('::: numTensors:', tf.memory().numTensors)
+            console.log('::: MSE:', opt_data[0])
+        }
 
         if (s.frameCount % 2345 === 0) {
             s.xs.dispose()
@@ -104,8 +110,9 @@ const p5Main = new p5((s) => {
             s.setup()
         }
     }
+    // -------------------------------------------------------------------------
 
-    // Private renders -----------------------------------------------------------
+    // Private renders ---------------------------------------------------------
     s.drawCloud = (xs, ys) => {
         s.stroke(150, 50, 250)
         s.strokeWeight(6)
@@ -149,19 +156,6 @@ const p5Main = new p5((s) => {
         const originY = s.height / 2
         s.line(originX - s.width / 20, originY, originX + s.width / 20, originY)
         s.line(originX, originY - s.height / 20, originX, originY + s.height / 20)
-    }
-
-    // Helpers -------------------------------------------------------------------
-    s.printTensorsCount = () => {
-        if (!(s.frameCount % 100) || s.frameCount === 1) {
-            console.log('::: numTensors@frame:', tf.memory().numTensors, '@', s.frameCount)
-        }
-    }
-
-    s.printLossValue = (loss) => {
-        if (!(s.frameCount % 100) || s.frameCount === 1) {
-            console.log('::: loss@frame:', loss[0], '@', s.frameCount)
-        }
     }
 }, 'p5-main')
 
